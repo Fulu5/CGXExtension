@@ -20,7 +20,7 @@ typedef void (^CGXExtensionAlertViewCancelBlock)(void);
                               onDismiss:(CGXExtensionAlertViewDismissBlock)dismissed
                                onCancel:(CGXExtensionAlertViewCancelBlock)cancelled;
 
-//在需要关闭时执行返回的block
+/** 在需要关闭时执行返回的block */
 + (dispatch_block_t)alertCustomView:(UIView *)view;
 
 @end

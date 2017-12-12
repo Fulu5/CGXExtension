@@ -10,4 +10,13 @@
 
 @interface UIApplication (CGXExtension)
 
++ (NSString *)bundleIdentifier;
++ (NSString *)appName;
++ (NSString *)appVersion;
++ (NSString *)buildVersion;
+
++ (UIImage *)appIcon;
+
++ (void)callPhone:(NSString *)phone;
+
 @end
