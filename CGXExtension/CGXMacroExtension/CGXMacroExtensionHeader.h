@@ -24,3 +24,7 @@
 #define kDevice_Is_iPhone6Size         (CGSizeEqualToSize(CGSizeMake(750, 1334), [UIScreen mainScreen].bounds.size))
 #define kDevice_Is_iPhone6PlusSize     (CGSizeEqualToSize(CGSizeMake(1242, 2208), [UIScreen mainScreen].bounds.size))
 #define kDevice_Is_iPhoneXSize         (CGSizeEqualToSize(CGSizeMake(1125, 2436), [UIScreen mainScreen].bounds.size))
+
+//GCD相关方法
+#define kGCDBackground(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
+#define kGCDMain(block)       dispatch_async(dispatch_get_main_queue(),block)
