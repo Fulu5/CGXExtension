@@ -18,4 +18,9 @@
 @property(nonatomic, assign) CGPoint origin;
 @property(nonatomic, assign) CGSize size;
 
+/** 设置 cornerRadius */
+- (void)setCornerWidth:(CGFloat)width;
+/** 设置边界颜色和宽度 */
+- (void)setBorderColor:(UIColor *)color width:(CGFloat)width;
+
 @end

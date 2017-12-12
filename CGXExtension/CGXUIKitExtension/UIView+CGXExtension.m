@@ -70,4 +70,14 @@
     return self.frame.size;
 }
 
+- (void)setCornerWidth:(CGFloat)width {
+    self.layer.cornerRadius = width;
+    self.layer.masksToBounds = YES;
+}
+
+- (void)setBorderColor:(UIColor *)color width:(CGFloat)width {
+    self.layer.borderColor = color.CGColor;
+    self.layer.borderWidth = width;
+}
+
 @end
