@@ -10,4 +10,12 @@
 
 @implementation UIWindow (CGXExtension)
 
++ (UIWindow *)window {
+    return [[UIApplication sharedApplication].delegate window];
+}
+
++ (UIViewController *)rootViewController {
+    return [[self window] rootViewController];
+}
+
 @end

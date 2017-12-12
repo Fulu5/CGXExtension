@@ -10,4 +10,7 @@
 
 @interface UIWindow (CGXExtension)
 
++ (UIWindow *)window;
++ (UIViewController *)rootViewController;
+
 @end
