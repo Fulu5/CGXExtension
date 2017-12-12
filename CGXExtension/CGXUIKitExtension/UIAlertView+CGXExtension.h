@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^CGXExtensionAlertViewDismissBlock)(NSInteger buttonIndex);
+typedef void (^CGXExtensionAlertViewCancelBlock)(void);
+
 @interface UIAlertView (CGXExtension)
+
++ (UIAlertView *)showAlertViewWithTitle:(NSString *)title
+                                message:(NSString *)message
+                      cancelButtonTitle:(NSString *)cancelButtonTitle
+                      otherButtonTitles:(NSArray<NSString *> *)otherButtons
+                              onDismiss:(CGXExtensionAlertViewDismissBlock)dismissed
+                               onCancel:(CGXExtensionAlertViewCancelBlock)cancelled;
+
+//在需要关闭时执行返回的block
++ (dispatch_block_t)alertCustomView:(UIView *)view;
 
 @end
