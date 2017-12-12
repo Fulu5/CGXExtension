@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface NSString (CGXExtension)
+
+- (CGSize)calculateSize:(CGSize)size font:(UIFont *)font;
 
 @end
