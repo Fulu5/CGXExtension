@@ -10,4 +10,12 @@
 
 @interface UIView (CGXExtension)
 
+@property(nonatomic, assign) CGFloat orginX;
+@property(nonatomic, assign) CGFloat orginY;
+@property(nonatomic, assign) CGFloat width;
+@property(nonatomic, assign) CGFloat height;
+
+@property(nonatomic, assign) CGPoint origin;
+@property(nonatomic, assign) CGSize size;
+
 @end
