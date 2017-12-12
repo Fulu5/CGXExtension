@@ -7,7 +7,35 @@
 //
 
 #import "UIDevice+CGXExtension.h"
+#import <sys/utsname.h>
 
 @implementation UIDevice (CGXExtension)
+
++ (NSString *)name {
+    return [UIDevice currentDevice].name;
+}
+
++ (NSString *)model {
+    return [UIDevice currentDevice].model;
+}
+
++ (NSString *)localizedModel {
+    return [UIDevice currentDevice].localizedModel;
+}
+
++ (NSString *)systemName {
+    return [UIDevice currentDevice].systemName;
+}
+
++ (NSString *)systemVersion {
+    return [UIDevice currentDevice].systemVersion;
+}
+
++ (NSString *)deviceModel {
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    return [NSString stringWithCString:systemInfo.machine
+                              encoding:NSUTF8StringEncoding];
+}
 
 @end
