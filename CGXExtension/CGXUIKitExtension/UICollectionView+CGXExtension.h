@@ -10,4 +10,16 @@
 
 @interface UICollectionView (CGXExtension)
 
+- (void)registerDefaultCell;
+
+- (void)registerCellWithCellClass:(Class)clazz;
+- (void)registerNibCellWithCellClass:(Class)clazz;
+
+- (void)registerHeaderFooterWithClass:(Class)clazz isHeader:(BOOL)isHeader;
+- (void)registerNibHeaderFooterWithClass:(Class)clazz isHeader:(BOOL)isHeader;
+
+- (UICollectionViewCell *)dequeueReusableCellWithDefaultIdentifierForIndexPath:(NSIndexPath *)indexPath;
+- (UICollectionViewCell *)dequeueReusableCellWithCellClass:(Class)clazz forIndexPath:(NSIndexPath *)indexPath;
+- (UICollectionViewCell *)dequeueReusableSupplementaryViewClass:(Class)clazz isHeader:(BOOL)isHeader forIndexPath:(NSIndexPath *)indexPath;
+
 @end
