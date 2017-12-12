@@ -10,4 +10,6 @@
 
 @interface UITableViewCell (CGXExtension)
 
+- (CGFloat)autoLayoutHeight;
+
 @end
