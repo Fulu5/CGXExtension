@@ -10,4 +10,10 @@
 
 @interface UIColor (CGXExtension)
 
++ (UIColor *)randomColor;
+
++ (UIColor *)randomColorWithAlpha:(CGFloat)alpha;
+
++ (UIColor *)colorWithHexString:(NSString *)hexString;
+
 @end
