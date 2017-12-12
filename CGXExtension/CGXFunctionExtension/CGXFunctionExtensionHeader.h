@@ -7,5 +7,4 @@
 //
 
 #import "CGXCommonFunction.h"
-#import "CGXNetworkManager.h"
 #import "CGXHUDManager.h"
