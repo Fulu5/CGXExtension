@@ -21,7 +21,7 @@ BOOL取值FALSE和TRUE，是0和非0的区别
 ```
     /**
      typedef signed char BOOL
-     typedef signed char SInt8(Int8)
+     typedef signed char Int8(SInt8)
      0和非0的区别
      */
     BOOL BL = YES;
