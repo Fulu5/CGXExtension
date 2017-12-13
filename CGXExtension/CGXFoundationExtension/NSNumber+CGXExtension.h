@@ -10,4 +10,12 @@
 
 @interface NSNumber (CGXExtension)
 
+- (NSDate *)dateFromSeconds;
+
+- (NSString *)RMBString;
++ (NSString *)RMBStringWithFloat:(float)price;
+
+- (NSString *)priceString;
++ (NSString *)priceStringWithFloat:(float)price;
+
 @end

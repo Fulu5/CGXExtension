@@ -7,6 +7,7 @@
 //
 
 #import "NSDictionary+CGXExtension.h"
+#import "NSString+CGXExtension.h"
 
 @implementation NSDictionary (CGXExtension)
 

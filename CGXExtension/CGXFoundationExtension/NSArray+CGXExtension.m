@@ -7,6 +7,7 @@
 //
 
 #import "NSArray+CGXExtension.h"
+#import "NSString+CGXExtension.h"
 
 @implementation NSArray (CGXExtension)
 
