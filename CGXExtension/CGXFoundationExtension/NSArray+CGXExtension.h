@@ -10,4 +10,11 @@
 
 @interface NSArray (CGXExtension)
 
+/** 将数组转为 JSON data */
+- (NSData *)JSONData;
+/** 将数组转为 JSON string */
+- (NSString *)JSONString;
+/** 将JSON string 转为数组 */
++ (NSArray *)arrayWithJSONString:(NSString *)JSONString;
+
 @end

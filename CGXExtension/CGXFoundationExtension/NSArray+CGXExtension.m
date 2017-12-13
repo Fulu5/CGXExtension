@@ -10,4 +10,16 @@
 
 @implementation NSArray (CGXExtension)
 
+- (NSData *)JSONData {
+    return [NSJSONSerialization dataWithJSONObject:self options:0 error:nil];
+}
+
+- (NSString *)JSONString {
+    return [[NSString alloc] initWithData:[self JSONData] encoding:NSUTF8StringEncoding];
+}
+
++ (NSArray *)arrayWithJSONString:(NSString *)JSONString {
+    return [JSONString objectFromJSONString];
+}
+
 @end
