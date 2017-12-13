@@ -10,4 +10,12 @@
 
 @interface NSDictionary (CGXExtension)
 
+- (NSData *)JSONData;
+- (NSString *)JSONString;
+
++ (NSDictionary *)dictionaryWithJSONString:(NSString *)JSONString;
+
+/** 将 key,value 排序后拼接成字符串 */
+- (NSString *)sortedKeyValueString;
+
 @end
