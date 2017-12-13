@@ -10,4 +10,11 @@
 
 @interface NSData (CGXExtension)
 
++ (instancetype)dataFromResource:(NSString *)name ofType:(NSString *)ext;
+
+- (id)objectFromJSONData;
++ (id)objectFromJSONDataForResource:(NSString *)name ofType:(NSString *)ext;
+
+- (NSString *)hexString;
+
 @end
