@@ -69,7 +69,7 @@
 
 - (UIImage *)QRCodeImage;
 
-/** 将 JSON Data 转为对象*/
+/** 将 JSON data 转为 Foundation object*/
 - (id)objectFromJSONString;
 
 /** 获取固定长度随机字符串 */
