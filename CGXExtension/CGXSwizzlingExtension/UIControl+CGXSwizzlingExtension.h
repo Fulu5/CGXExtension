@@ -10,4 +10,7 @@
 
 @interface UIControl (CGXSwizzlingExtension)
 
+/** 设置UIControl的响应时间间隔,默认0.5s */
+@property (nonatomic, assign) NSTimeInterval acceptEventInterval;
+
 @end
