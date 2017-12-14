@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, CGXLoadStatus) {
 //无 pullLoadingBlock 时 此方法无效
 - (void)addLoadStatusViewWithPullLoadingBlock:(dispatch_block_t)pullLoadingBlock footerLoadingBlock:(dispatch_block_t)footerLoadingBlock;
 
-//仅 YXDLoadStatusEmpty 和 YXDLoadStatusFailed 有效
+//仅 CGXLoadStatusEmpty 和 CGXLoadStatusFailed 有效
 - (void)setTitle:(NSString *)title imageName:(NSString *)imageName forStatus:(CGXLoadStatus)status;
 
 @end
