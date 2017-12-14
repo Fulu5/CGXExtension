@@ -12,6 +12,7 @@
 
 + (instancetype)dataFromResource:(NSString *)name ofType:(NSString *)ext;
 
+/** 将JSON data转为 Foundation object */
 - (id)objectFromJSONData;
 + (id)objectFromJSONDataForResource:(NSString *)name ofType:(NSString *)ext;
 

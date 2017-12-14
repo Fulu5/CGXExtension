@@ -10,7 +10,9 @@
 
 @interface NSDictionary (CGXExtension)
 
+/** 将字典转为 JSON data */
 - (NSData *)JSONData;
+/** 将字典转为字符串 */
 - (NSString *)JSONString;
 
 + (NSDictionary *)dictionaryWithJSONString:(NSString *)JSONString;
