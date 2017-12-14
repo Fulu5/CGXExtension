@@ -10,4 +10,8 @@
 
 @implementation UITextField (CGXExtension)
 
+- (void)setPlaceholderColor:(UIColor *)placeholderColor {
+    [self setValue:placeholderColor forKeyPath:@"_placeholderLabel.textColor"];
+}
+
 @end

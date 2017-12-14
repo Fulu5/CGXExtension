@@ -10,4 +10,6 @@
 
 @interface UITextField (CGXExtension)
 
+- (void)setPlaceholderColor:(UIColor *)placeholderColor;
+
 @end
