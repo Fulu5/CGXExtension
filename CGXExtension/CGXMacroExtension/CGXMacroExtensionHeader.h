@@ -25,6 +25,9 @@
 #define kDevice_Is_iPhone6PlusSize     (CGSizeEqualToSize(CGSizeMake(1242, 2208), [UIScreen mainScreen].bounds.size))
 #define kDevice_Is_iPhoneXSize         (CGSizeEqualToSize(CGSizeMake(1125, 2436), [UIScreen mainScreen].bounds.size))
 
+/** 设置颜色值：UIColorFromHex(0x067AB5) */
+#define UIColorFromHex(hexValue) [UIColor colorWithRed:((float)((hexValue & 0xFF0000) >> 16))/255.0 green:((float)((hexValue & 0xFF00) >> 8))/255.0 blue:((float)(hexValue & 0xFF))/255.0 alpha:1.0]
+
 //GCD相关方法
 #define kGCDBackground(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 #define kGCDMain(block)       dispatch_async(dispatch_get_main_queue(),block)
