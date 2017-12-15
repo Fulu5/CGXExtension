@@ -10,4 +10,12 @@
 
 @interface CGXBaseViewController : UIViewController
 
+@property (nonatomic, assign) BOOL showBackItem;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+- (void)popViewController;
+
 @end
+
