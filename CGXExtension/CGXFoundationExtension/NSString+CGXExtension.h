@@ -68,6 +68,7 @@
 - (NSString *)stringValue;
 
 - (UIImage *)QRCodeImage;
+- (UIImage *)image;
 
 /** 将 JSON data 转为 Foundation object*/
 - (id)objectFromJSONString;

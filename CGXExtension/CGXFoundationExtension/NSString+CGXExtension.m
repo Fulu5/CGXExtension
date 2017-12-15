@@ -213,6 +213,10 @@ static NSString * const kCharactersToBeEscapedInQueryString = @"?!@#$^&%*+,:;='\
     return [UIImage imageWithCIImage:[qrFilter.outputImage imageByApplyingTransform:CGAffineTransformMakeScale(5.0f, 5.0f)]];
 }
 
+- (UIImage *)image {
+    return [UIImage imageNamed:self];
+}
+
 - (id)objectFromJSONString {
     return [NSJSONSerialization JSONObjectWithData:[self dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
 }
