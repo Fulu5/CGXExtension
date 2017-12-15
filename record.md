@@ -61,3 +61,32 @@ BOOL取值FALSE和TRUE，是0和非0的区别
 10. 关于NSNull
  * NSNull好像没有什么具体的定义，它包含了唯一一个方法`+(NSNull)null`，[NSNull null]是一个对象，用来表示零值的单独的对象。
  * NSNull主要用在不能使用nil的场景下，比如NSMutableArray是以nil作为数组结尾判断的，所以如果想插入一个空的对象就不能使用nil，NSMutableDictionary也是类似，我们不能使用nil作为一个object，而要使用NSNull
+11. 关于UIImageRenderingMode
+    * `UIImageRenderingModeAutomatic`
+    	* 默认的渲染模式
+    	* navigation bars, tab bars, toolbars, and segmented controls将被渲染为templates
+    	* imageView 和 webView将被渲染为originals
+    * `UIImageRenderingModeAlwaysOriginal`
+    	* 原图展示
+    * `UIImageRenderingModeAlwaysTemplate`
+    	* 该模式忽略颜色信息
+
+12. he
+13. he
+14. he
+15. he
+16. he
+17. he
+18. he
+19. he
+20. he
+21. he
+22. he
+23. he
+24. he
+25. he
+26. he
+27. he
+28. he
+29. he
+30. he
