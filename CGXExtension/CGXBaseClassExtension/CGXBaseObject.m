@@ -10,4 +10,10 @@
 
 @implementation CGXBaseObject
 
+- (NSDictionary *)propertyMap {
+    //子类需要覆盖此方法
+    //详情见 NSObject+CGXExtension.m - line 294
+    return nil;
+}
+
 @end
