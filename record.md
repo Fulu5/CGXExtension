@@ -50,17 +50,17 @@ BOOL取值FALSE和TRUE，是0和非0的区别
     B = false;
 ```
 7. 关于nil
- * nil的定义是`null pointer to object-c object`，指的是一个OC对象指针为空，本质就是(id)0，是OC对象的字面0值
- * 不过这里有必要提一点就是OC中给空指针发消息不会崩溃的语言特性，原因是OC的函数调用都是通过`objc_msgSend`进行消息发送来实现的，相对于C和C++来说，对于空指针的操作会引起Crash的问题，而objc_msgSend会通过判断self来决定是否发送消息，如果self为nil，那么selector也会为空，直接返回，所以不会出现问题。
+ * nil的定义是[null pointer to object-c object]()，指的是一个`OC对象`指针为空，本质就是(id)0，是OC对象的字面0值
+ * 不过这里有必要提一点就是OC中给空指针发消息不会崩溃的语言特性，原因是OC的函数调用都是通过[objc_msgSend]()进行消息发送来实现的，相对于C和C++来说，对于空指针的操作会引起Crash的问题，而objc_msgSend会通过判断self来决定是否发送消息，如果self为nil，那么selector也会为空，直接返回，所以不会出现问题。
  * 这里补充一点，如果一个对象已经被释放了，那么这个时候再去调用方法肯定是会Crash的，因为这个时候这个对象就是一个野指针了，安全的做法是释放后将对象重新置为nil，使它成为一个空指针
-8. 关于NULL
- * NULL的定义是`null pointer to primitive type or absence of data`，指的是一般的基础数据类型为空，可以给任意的指针赋值。本质就是(void )0，是C指针的字面0值。
+8. 关于Nil
+ * Nil的定义是[null pointer to object-c class]()，指的是一个`类`指针为空。本质就是(class)0，OC类的字面零值。
+9. 关于NULL
+ * NULL的定义是[null pointer to primitive type or absence of data]()，指的是一般的`基础数据类型`为空，可以给任意的指针赋值。本质就是(void )0，是`C指针`的字面0值。
  * 我们要尽量不去将NULL初始化OC对象，可能会产生一些异常的错误，要使用nil，NULL主要针对基础数据类型。
-9. 关于Nil
- * Nil的定义是`null pointer to object-c class`，指的是一个类指针为空。本质就是(class)0，OC类的字面零值。
 10. 关于NSNull
- * NSNull好像没有什么具体的定义，它包含了唯一一个方法`+(NSNull)null`，[NSNull null]是一个对象，用来表示零值的单独的对象。
- * NSNull主要用在不能使用nil的场景下，比如NSMutableArray是以nil作为数组结尾判断的，所以如果想插入一个空的对象就不能使用nil，NSMutableDictionary也是类似，我们不能使用nil作为一个object，而要使用NSNull
+ * NSNull好像没有什么具体的定义，它包含了唯一一个方法[+(NSNull)null]()，[NSNull null]是一个对象，用来表示零值的单独的对象。
+ * NSNull主要用在`不能使用nil的场景`下，比如NSMutableArray是以nil作为数组结尾判断的，所以如果想插入一个空的对象就不能使用nil，NSMutableDictionary也是类似，我们不能使用nil作为一个object，而要使用NSNull
 11. 关于UIImageRenderingMode
     * `UIImageRenderingModeAutomatic`
     	* 默认的渲染模式
