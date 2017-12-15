@@ -8,6 +8,7 @@
 
 #import "UIImage+CGXExtension.h"
 #import <objc/runtime.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 static const char *UIImage_block = "UIImage_block";
 
@@ -16,26 +17,41 @@ static const char *UIImage_block = "UIImage_block";
 @implementation UIGifImageObject
 
 + (UIGifImageObject *)gifImageObjectWithData:(NSData *)data {
-    NSMutableArray *frames = [[NSMutableArray alloc] init];
+    
     CGImageSourceRef src = CGImageSourceCreateWithData((CFDataRef)data, NULL);
-    CGFloat animationTime = 0.f;
-    if (src) {
-        //Return the number of images
-        size_t l = CGImageSourceGetCount(src);
-        frames = [NSMutableArray arrayWithCapacity:l];
-        for (NSInteger i = 0; i < l; i++) {
-            CGImageRef img = CGImageSourceCreateImageAtIndex(src, i, NULL);
-            NSDictionary *properties = (NSDictionary *)CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(src, i, NULL));
-            NSDictionary *frameProperties = [properties objectForKey:(NSString *)kCGImagePropertyGIFDictionary];
-            NSNumber *delayTime = [frameProperties objectForKey:(NSString *)kCGImagePropertyGIFDelayTime];
-            animationTime += [delayTime floatValue];
-            if (img) {
-                [frames addObject:[UIImage imageWithCGImage:img]];
-                CGImageRelease(img);
-            }
-        }
-        CFRelease(src);
+    if (!src) {
+        return nil;
     }
+    
+    CFStringRef imageSourceContainerType = CGImageSourceGetType(src);
+    BOOL isGIFData = UTTypeConformsTo(imageSourceContainerType, kUTTypeGIF);
+    if (!isGIFData) {
+        return nil;
+    }
+    
+    CGFloat animationTime = 0.f;
+    NSMutableArray *frames = [[NSMutableArray alloc] init];
+    
+    //Return the number of images
+    size_t l = CGImageSourceGetCount(src);
+    frames = [NSMutableArray arrayWithCapacity:l];
+    
+    for (NSInteger i = 0; i < l; i++) {
+        CGImageRef img = CGImageSourceCreateImageAtIndex(src, i, NULL);
+        
+        NSDictionary *properties = (NSDictionary *)CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(src, i, NULL));
+        NSDictionary *frameProperties = [properties objectForKey:(NSString *)kCGImagePropertyGIFDictionary];
+        
+        NSNumber *delayTime = [frameProperties objectForKey:(NSString *)kCGImagePropertyGIFDelayTime];
+        animationTime += [delayTime floatValue];
+        
+        if (img) {
+            [frames addObject:[UIImage imageWithCGImage:img]];
+            CGImageRelease(img);
+        }
+    }
+    CFRelease(src);
+
     if (frames.count) {
         UIGifImageObject *object = [UIGifImageObject new];
         object.images = frames;
