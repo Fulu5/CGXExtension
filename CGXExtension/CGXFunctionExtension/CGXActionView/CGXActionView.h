@@ -10,6 +10,7 @@
 
 @interface CGXActionView : UIView
 
+/** 弹出一个 UIPickerView */
 + (void)showView:(UIView *)view
     barTintColor:(UIColor *)barTintColor
       titleColor:(UIColor *)titleColor
