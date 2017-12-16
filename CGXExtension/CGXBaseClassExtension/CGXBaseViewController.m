@@ -7,6 +7,7 @@
 //
 
 #import "CGXBaseViewController.h"
+#import "NSString+CGXExtension.h"
 
 @interface CGXBaseViewController ()
 
