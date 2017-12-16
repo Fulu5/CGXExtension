@@ -10,9 +10,9 @@
 #import "CocoaLumberjack.h"
 
 #ifdef DEBUG
-static DDLogLevel const ddlogLevel = DDLogLevelVerbose;
+static DDLogLevel const ddLogLevel = DDLogLevelVerbose;//固定写法
 #else
-static DDLogLevel const DDLogLevel = DDLogLevelError;
+static DDLogLevel const ddLogLevel = DDLogLevelError;
 #endif
 
 @interface CGXLog : NSObject
