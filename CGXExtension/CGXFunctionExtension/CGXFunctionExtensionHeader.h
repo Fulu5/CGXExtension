@@ -8,3 +8,4 @@
 
 #import "CGXCommonFunction.h"
 #import "CGXHUDManager.h"
+#import "CGXLog.h"
