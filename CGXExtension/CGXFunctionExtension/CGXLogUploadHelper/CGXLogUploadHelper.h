@@ -10,4 +10,8 @@
 
 @interface CGXLogUploadHelper : NSObject
 
++ (NSArray<NSString *> *)logPaths;
+
++ (BOOL)deleteLogAtPath:(NSString *)logPath error:(NSError **)error;
+
 @end
