@@ -7,7 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CocoaLumberjack.h"
+
+#ifdef DEBUG
+static DDLogLevel const ddlogLevel = DDLogLevelVerbose;
+#else
+static DDLogLevel const DDLogLevel = DDLogLevelError;
+#endif
 
 @interface CGXLog : NSObject
+
++ (NSString *)logsDirecroty;
 
 @end
