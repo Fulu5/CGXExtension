@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, UIButtonImageAlignment) {
+    UIButtonImageAlignmentLeft  = 0,//default
+    UIButtonImageAlignmentRight = 1,
+};
+
 @interface UIButton (CGXExtension)
+
+/** 设置 UIButton 图片位置*/
+- (void)setImageAlignment:(UIButtonImageAlignment)imageAlignment;
 
 @end
