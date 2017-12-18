@@ -108,7 +108,7 @@ static const NSInteger  kCGXFilterViewDefaultFontSize   = 14;
     UIImage *selectedImage = [originImage tintWithColor:self.selectedTitleColor];
     
     for (NSInteger section = 0; section < self.sectionCount; section++) {
-        //每个按钮的宽度
+        //每个按钮的宽度比例
         CGFloat widthPer = 0;
         
         if ([self.delegate respondsToSelector:@selector(filterView:headerWidthPercentageInSection:)]) {
