@@ -76,8 +76,10 @@ BOOL取值FALSE和TRUE，是0和非0的区别
 	* masksToBounds：是CALayer的属性，如果设置为yes，则不显示超出父图层的部分
 	* 功能上等价
 	* `clipsToBounds`内部调用的是`masksToBounds`
-	
-13. he
+13. `UILabel`切圆角
+	* 设置视图的图层背景色,不要直接设置 label.backgroundColor
+	* label.layer.backgroundColor = [UIColor grayColor].CGColor;
+	* label.layer.cornerRadius = cornerRadius;
 14. he
 15. he
 16. he
