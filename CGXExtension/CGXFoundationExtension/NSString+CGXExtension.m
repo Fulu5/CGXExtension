@@ -8,6 +8,7 @@
 
 #import "NSString+CGXExtension.h"
 #import <CommonCrypto/CommonHMAC.h>
+#import "CGXRegexExtensionHeader.h"
 
 @implementation NSString (CGXExtension)
 
@@ -21,33 +22,23 @@
 }
 
 - (BOOL)isEmail {
-    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES%@",emailRegex];
-    return [emailTest evaluateWithObject:self];
+    return [self isMatch:RX(@"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")];
 }
 
 - (BOOL)isPhone {
-    NSString *phoneRegex = @"^(0|86|17951)?(13|14|15|17|18)[0-9]{9}$";
-    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",phoneRegex];
-    return [phoneTest evaluateWithObject:self];
+    return [self isMatch:RX(@"^(0|86|17951)?(13|14|15|17|18)[0-9]{9}$")];
 }
 
 - (BOOL)isExpressNum {
-    NSString *regex =@"[A-Za-z0-9]{1,20}";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
-    return [pred evaluateWithObject:self];
+    return [self isMatch:RX(@"[A-Za-z0-9]{1,20}")];
 }
 
 - (BOOL)isBarcode {
-    NSString *regex =@"[0-9]{10}";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
-    return [pred evaluateWithObject:self];
+    return [self isMatch:RX(@"[0-9]{10}")];
 }
 
 - (BOOL)isChinese {
-    NSString *match=@"(^[\u4e00-\u9fa5]+$)";
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF matches %@", match];
-    return [predicate evaluateWithObject:self];
+    return [self isMatch:RX(@"(^[\u4e00-\u9fa5]+$)")];
 }
 
 #pragma mark - 加密处理
