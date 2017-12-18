@@ -71,7 +71,12 @@ BOOL取值FALSE和TRUE，是0和非0的区别
     * `UIImageRenderingModeAlwaysTemplate`
     	* 该模式忽略颜色信息
 
-12. he
+12. `layer.makesToBounds` 和 `clipsToBounds`
+	* clipsToBounds：是UIView的属性，如果设置为yes，则不显示超出父视图的部分
+	* masksToBounds：是CALayer的属性，如果设置为yes，则不显示超出父图层的部分
+	* 功能上等价
+	* `clipsToBounds`内部调用的是`masksToBounds`
+	
 13. he
 14. he
 15. he
