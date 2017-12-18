@@ -80,7 +80,8 @@ BOOL取值FALSE和TRUE，是0和非0的区别
 	* 设置视图的图层背景色,不要直接设置 label.backgroundColor
 	* label.layer.backgroundColor = [UIColor grayColor].CGColor;
 	* label.layer.cornerRadius = cornerRadius;
-14. he
+14. _cmd
+	* _cmd 代指当前方法的选择器
 15. he
 16. he
 17. he

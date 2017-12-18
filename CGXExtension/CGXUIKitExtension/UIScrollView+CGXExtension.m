@@ -58,6 +58,7 @@ static NSString *kCGXLoadStatusDefaultEmptyTitle = @"暂无内容";
 
 - (void)commonInit {
     self.hidden = YES;
+    //保证上下左右边距不变
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
