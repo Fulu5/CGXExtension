@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "CocoaLumberjack.h"
 
+/**
+ 日志
+ Debug  : Error, warning, info, debug and verbose logs
+ Release: Error logs only
+ */
+
 #ifdef DEBUG
 static DDLogLevel const ddLogLevel = DDLogLevelVerbose;//固定写法
 #else
