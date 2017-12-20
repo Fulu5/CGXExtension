@@ -182,9 +182,9 @@ typedef void(^CGXNetworkManagerMultiFilesDownloadCompletionBlock)(NSArray<NSURL 
 /** 子类重写此方法来新增请求参数 */
 - (void)willSendHTTPRequestWithParams:(NSMutableDictionary *)params NS_REQUIRES_SUPER;
 /** 处理请求成功 */
-- (void)handleSuccessWithURLSessionTask:(NSURLSessionTask *)task result:(id)result;
+- (void)handleSuccessWithURLSessionTask:(NSURLSessionTask *)task result:(id)result NS_REQUIRES_SUPER;
 /** 处理请求失败 */
-- (void)handleFailureWithURLSessionTask:(NSURLSessionTask *)task result:(id)result;
+- (void)handleFailureWithURLSessionTask:(NSURLSessionTask *)task result:(id)result NS_REQUIRES_SUPER;
 
 #pragma mark - New
 
