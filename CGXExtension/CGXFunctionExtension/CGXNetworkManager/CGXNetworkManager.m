@@ -14,6 +14,7 @@
 #import "CGXLog.h"
 #import "NSString+CGXExtension.h"
 #import "CGXFileManager.h"
+#import "NSDictionary+CGXExtension.h"
 
 NSString const* kCGXnetworkLoadingStatusDefault = @"正在加载";
 
@@ -81,10 +82,14 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
     
     NSMutableDictionary *sendParams = nil;
     
+#pragma mark - CommonParams
+    
     if (params.count || self.commonParams.count) {
         sendParams = [NSMutableDictionary dictionaryWithDictionary:params];
         [sendParams addEntriesFromDictionary:self.commonParams];
     }
+
+#pragma mark - CommonHeaders
     
     /** 设置请求头 */
     [self.commonHeaders enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL * _Nonnull stop) {
@@ -92,9 +97,13 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
             [self.sessionManager.requestSerializer setValue:value forHTTPHeaderField:key];
         }
     }];
+
+#pragma mark - WillSendHTTPRequest
     
     /** 添加子类新增的参数 */
     [self willSendHTTPRequestWithParams:sendParams];
+    
+#pragma mark - Success
     
     void (^successBlock)(NSURLSessionDataTask *task, id responseObject) = ^(NSURLSessionDataTask * task, id responseObject) {
 
@@ -111,7 +120,7 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
                 [CGXHUDManager dismiss];
             }
 
-            DDLogInfo(@"\nSuccess : %@ \n%@", result.message, [CGXNetworkManager responseInfoDescription:task]);
+            DDLogInfo(@"\nSuccess : %@ \n%@", result.message, [CGXNetworkManager responseInfoDescription:task responseObject:responseObject]);
 
             [self handleSuccessWithURLSessionTask:task result:result];
             
@@ -120,7 +129,7 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
                 [CGXHUDManager showErrorAndAutoDismissWithTitle:result.message];
             }
 
-            DDLogInfo(@"\nError : %@ \n%@", result.error.localizedDescription, [CGXNetworkManager responseInfoDescription:task]);
+            DDLogInfo(@"\nError : %@ \n%@", result.error.localizedDescription, [CGXNetworkManager responseInfoDescription:task responseObject:responseObject]);
 
             [self handleFailureWithURLSessionTask:task result:result];
         }
@@ -130,13 +139,15 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
         }
     };
     
+#pragma mark - Failure
+    
     void (^failureBlock)(NSURLSessionDataTask *task, NSError *error) = ^(NSURLSessionDataTask *task, NSError *error) {
 
         if (!self.taskManager.operationQueue.operationCount) {
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
 
-        DDLogError(@"\nError : %@ \n%@", error.userInfo, [CGXNetworkManager responseInfoDescription:task]);
+        DDLogError(@"\n------可能原因:请求姿势错误------\nError : %@ \n%@", error.userInfo, [CGXNetworkManager responseInfoDescription:task responseObject:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]]);
 
         NSString *message = @"网络连接失败";
 
@@ -149,6 +160,8 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
         }
     };
     
+#pragma mark - Progress
+    
     void (^progressBlock)(NSProgress *uploadProgress) = uploadProgressBlock ?
     ^(NSProgress *uploadProgress) {
         uploadProgressBlock(1.0 * uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
@@ -156,7 +169,8 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
     
     NSURLSessionTask *sessionTask = nil;
     
-    //上传
+#pragma mark - 上传
+    
     if (uploadObjectsArray.count) {
         
         if (timeoutInterval >= 0) {
@@ -423,11 +437,11 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
     
 }
 
-- (void)handleSuccessWithURLSessionTask:(NSURLSessionTask *)task result:(id)result {
+- (void)handleSuccessWithURLSessionTask:(NSURLSessionTask *)task result:(CGXNetworkResult *)result {
     
 }
 
-- (void)handleFailureWithURLSessionTask:(NSURLSessionTask *)task result:(id)result {
+- (void)handleFailureWithURLSessionTask:(NSURLSessionTask *)task result:(CGXNetworkResult *)result {
     
 }
 
@@ -474,21 +488,35 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
 
 #pragma mark - Private
 
-+ (NSString *)responseInfoDescription:(NSURLSessionDataTask *)task {
-    NSData *errorData = task.error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
++ (NSString *)responseInfoDescription:(NSURLSessionDataTask *)task responseObject:(id)object {
+    
+    NSMutableURLRequest *request = (NSMutableURLRequest *)task.originalRequest;
+    NSString *requestBody = @"";
+    
+    @try {
+        
+        requestBody = [object JSONPrettyStringEncoded];
+        
+    } @catch (NSException *exception) {
+        
+        NSLog(@"\n------Exception Reason------\n%@\n", exception.reason);
+        
+    } @finally {
+        
+    }
     
     return [NSString stringWithFormat:
             @" ------RequestURL------: \n %@ %@, \n "
             " ------RequestBody------: \n %@, \n "
             " ------RequestHeader------:\n %@, \n "
-            " ------ResponseStatus:------:\n %@, \n "
+            " ------ResponseStatus------:\n %@, \n "
             " ------ResponseBody------:\n %@, \n "
             " ------ResponseHeader-----:\n %@ \n ",
-            task.currentRequest.URL, task.currentRequest.HTTPMethod,
-            [[NSString alloc] initWithData:[task.currentRequest HTTPBody] encoding:NSUTF8StringEncoding],
-            task.currentRequest.allHTTPHeaderFields,
+            request.URL, request.HTTPMethod,
+            [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding],
+            request.allHTTPHeaderFields,
             @(((NSHTTPURLResponse *)task.response).statusCode),
-            [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding],
+            requestBody,
             ((NSHTTPURLResponse *)task.response).allHeaderFields];
 }
 

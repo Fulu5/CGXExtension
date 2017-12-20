@@ -55,7 +55,7 @@ typedef void(^CGXNetworkManagerMultiFilesDownloadCompletionBlock)(NSArray<NSURL 
 #pragma mark - Request
 
 /**
- *  根据相应接口获取数据
+ *  根据相应接口获取数据-基础方法
  *
  *  @param params           数据字典
  *  @param interfaceAddress 接口地址
@@ -68,7 +68,7 @@ typedef void(^CGXNetworkManagerMultiFilesDownloadCompletionBlock)(NSArray<NSURL 
                                                method:(NetworkManagerHTTPMethod)method;
 
 /**
- *  根据相应接口获取数据
+ *  根据相应接口获取数据-带有loadingStatus不带failure
  *
  *  @param params           数据字典
  *  @param interfaceAddress 接口地址
@@ -83,7 +83,7 @@ typedef void(^CGXNetworkManagerMultiFilesDownloadCompletionBlock)(NSArray<NSURL 
                                                method:(NetworkManagerHTTPMethod)method;
 
 /**
- *  根据相应接口获取数据
+ *  根据相应接口获取数据-半完整-不带上传
  *
  *  @param params           数据字典
  *  @param interfaceAddress 接口地址
@@ -100,7 +100,7 @@ typedef void(^CGXNetworkManagerMultiFilesDownloadCompletionBlock)(NSArray<NSURL 
                                                method:(NetworkManagerHTTPMethod)method;
 
 /**
- 根据相应接口获取数据
+ 根据相应接口获取数据-完整
 
  @param params              参数字典
  @param uploadObjectsArray  上传文件数组(仅在 POST 下生效)
@@ -182,9 +182,9 @@ typedef void(^CGXNetworkManagerMultiFilesDownloadCompletionBlock)(NSArray<NSURL 
 /** 子类重写此方法来新增请求参数 */
 - (void)willSendHTTPRequestWithParams:(NSMutableDictionary *)params NS_REQUIRES_SUPER;
 /** 处理请求成功 */
-- (void)handleSuccessWithURLSessionTask:(NSURLSessionTask *)task result:(id)result NS_REQUIRES_SUPER;
+- (void)handleSuccessWithURLSessionTask:(NSURLSessionTask *)task result:(CGXNetworkResult *)result NS_REQUIRES_SUPER;
 /** 处理请求失败 */
-- (void)handleFailureWithURLSessionTask:(NSURLSessionTask *)task result:(id)result NS_REQUIRES_SUPER;
+- (void)handleFailureWithURLSessionTask:(NSURLSessionTask *)task result:(CGXNetworkResult *)result NS_REQUIRES_SUPER;
 
 #pragma mark - New
 
