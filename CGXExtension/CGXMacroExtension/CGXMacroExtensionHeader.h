@@ -32,6 +32,18 @@
 #define kGCDBackground(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 #define kGCDMain(block)       dispatch_async(dispatch_get_main_queue(),block)
 
+//SharedInstance
+#define SharedInstanceDeclare + (instancetype)sharedInstance;
+#define SharedInstanceImplementation \
++ (instancetype)sharedInstance { \
+static id sharedInstance = nil; \
+static dispatch_once_t onceToken; \
+dispatch_once(&onceToken, ^{ \
+sharedInstance = [self new]; \
+}); \
+return sharedInstance; \
+}
+
 /**
  弱引用 - YYKitMacro.h
 

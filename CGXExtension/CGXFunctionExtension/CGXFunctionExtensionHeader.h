@@ -9,3 +9,5 @@
 #import "CGXCommonFunction.h"
 #import "CGXHUDManager.h"
 #import "CGXLog.h"
+#import "CGXNetworkManager.h"
+#import "CGXNetworkResult.h"
