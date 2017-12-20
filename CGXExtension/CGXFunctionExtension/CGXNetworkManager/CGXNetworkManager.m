@@ -491,11 +491,11 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
 + (NSString *)responseInfoDescription:(NSURLSessionDataTask *)task responseObject:(id)object {
     
     NSMutableURLRequest *request = (NSMutableURLRequest *)task.originalRequest;
-    NSString *requestBody = @"";
+    NSString *responseBody = @"";
     
     @try {
         
-        requestBody = [object JSONPrettyStringEncoded];
+        responseBody = [object JSONPrettyStringEncoded];
         
     } @catch (NSException *exception) {
         
@@ -516,7 +516,7 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
             [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding],
             request.allHTTPHeaderFields,
             @(((NSHTTPURLResponse *)task.response).statusCode),
-            requestBody,
+            responseBody,
             ((NSHTTPURLResponse *)task.response).allHeaderFields];
 }
 
