@@ -14,6 +14,8 @@
 - (NSData *)JSONData;
 /** 将字典转为字符串 */
 - (NSString *)JSONString;
+/** 将字典转化为格式化字符串 */
+- (NSString *)JSONPrettyStringEncoded;
 
 + (NSDictionary *)dictionaryWithJSONString:(NSString *)JSONString;
 
