@@ -5,7 +5,10 @@
 3. 若遇到[zsh: /usr/local/bin/pod: bad interpreter: /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin: no such file or directory]()问题可以尝试使用
 `sudo gem install -n /usr/local/bin cocoapods`
 4. 自适应高度cell，设置自适应控件以`contentView`为约束，在`heightforRowAtIndexPath`方法中设置`tempCell`的数据源，并在cell的`awakeFromNib`方法中设置控件的`preferredMaxLayoutWidth`
-5. 使用`git config --list`查看当前目录的用户信息，单独配置当前目录可以使用`git config user.name 'name'`和`git config user.email 'email'`
+5.	[git config]()
+	* 使用`git config --list`查看当前目录的用户信息
+	* 单独配置当前目录可以使用`git config user.name 'name'`和`git config user.email 'email'`
+	* 配置全局使用`git config global user.name 'name'`和 `git config global user.email 'email'`
 6. 大BOOL和小bool之间的区别： 
 
  * 类型不同 
@@ -82,15 +85,32 @@ BOOL取值FALSE和TRUE，是0和非0的区别
 	* label.layer.cornerRadius = cornerRadius;
 14. _cmd
 	* _cmd 代指当前方法的选择器
-15. he
-16. he
-17. he
-18. he
-19. he
-20. he
-21. he
-22. he
-23. he
+15. 设置`UITableView`的背景色为白色可以取消`groupType`下`header`和`footer`的颜色(默认灰色的那种)
+16. 使用`switch case`时注意`break`的使用
+17. `复用`的cell中对视图进行隐藏和显示操作时，隐藏和显示的判断都要有，否则在复用过程中会出现错误的判断
+18. `复用`的cell中，需要在`block`中使用`indexPath`时须使用tableView:indexPathForCell来获取，通过捕获得到的indexPath可能会因为复用不准确
+19. Xcode一些快捷键
+	* command shift O 快速搜索、打开文件
+	* command \ 添加、删除断点
+	* control ← 回到上次打开的页面
+20. FPS 帧每秒
+	* 每帧 16.7ms
+	* 主线程UI渲染时间不超过16.7毫秒为优
+21. `viewController.view`调用时会初始化添加在view上的视图，在继承定制的时候有些属性须在此之前进行配置
+22. App Store`打包上传`
+	* 证书配置
+		* debug
+		* release
+	* release环境下打包，选择current device或者真机都行
+	* iTunes Connect构建新版本
+	* App Loader上传
+	* iTunes Connect提交审核
+23. 本地私有库
+	* 拖入文件夹，不勾选copy items
+	* 配置Building Setting
+		* Framework SearchPath
+		* Library SearchPath
+		* Prefix Header
 24. he
 25. he
 26. he
