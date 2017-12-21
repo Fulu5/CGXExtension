@@ -55,6 +55,18 @@ typedef void(^CGXNetworkManagerMultiFilesDownloadCompletionBlock)(NSArray<NSURL 
 #pragma mark - Request
 
 /**
+ 总：params                   不带上传：params                 不带failure：params                不带status：params
+    uploadObjectsArray               interfaceAddress                   interfaceAddress                 interfaceAddress
+    interfaceAddress                 completion                         completion                       completion
+    completion                       networkFailure                     loadingStatus                    method
+    networkFailure                   loadingStatus                      method
+    loadingStatus                    method
+    uploadProgressBlock
+    timeoutInterval
+    method
+ */
+
+/**
  *  根据相应接口获取数据-基础方法
  *
  *  @param params           数据字典
@@ -68,7 +80,7 @@ typedef void(^CGXNetworkManagerMultiFilesDownloadCompletionBlock)(NSArray<NSURL 
                                                method:(NetworkManagerHTTPMethod)method;
 
 /**
- *  根据相应接口获取数据-带有loadingStatus不带failure
+ *  根据相应接口获取数据-loadingStatus-不带failure
  *
  *  @param params           数据字典
  *  @param interfaceAddress 接口地址
@@ -83,7 +95,7 @@ typedef void(^CGXNetworkManagerMultiFilesDownloadCompletionBlock)(NSArray<NSURL 
                                                method:(NetworkManagerHTTPMethod)method;
 
 /**
- *  根据相应接口获取数据-半完整-不带上传
+ *  根据相应接口获取数据-loadingStatus-failure-不带上传
  *
  *  @param params           数据字典
  *  @param interfaceAddress 接口地址
@@ -100,7 +112,7 @@ typedef void(^CGXNetworkManagerMultiFilesDownloadCompletionBlock)(NSArray<NSURL 
                                                method:(NetworkManagerHTTPMethod)method;
 
 /**
- 根据相应接口获取数据-完整
+ 根据相应接口获取数据-完整参数
 
  @param params              参数字典
  @param uploadObjectsArray  上传文件数组(仅在 POST 下生效)

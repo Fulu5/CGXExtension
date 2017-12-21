@@ -10,6 +10,26 @@
 
 @interface CGXHUDManager : SVProgressHUD
 
+/**
+ duration - duration
+          - duration:completion
+ 
+ title    - duration
+          - duration:completion
+          - autoDismiss
+          - autoDismiss:completion
+ 
+ success  - duration
+          - duration:completion
+          - autoDismiss
+          - autoDismiss:completion
+ 
+ error    - duration
+          - duration:completion
+          - autoDismiss
+          - autoDismiss:completion
+ */
+
 + (void)showWithDuration:(CGFloat)duration;
 + (void)showWithDuration:(CGFloat)duration completion:(dispatch_block_t)completion;
 

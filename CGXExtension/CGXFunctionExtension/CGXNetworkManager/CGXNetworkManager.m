@@ -154,7 +154,7 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
 
-        DDLogError(@"\n------可能原因:请求姿势错误------\nError : %@ \n%@", error.userInfo, [CGXNetworkManager responseInfoDescription:task responseObject:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]]);
+        DDLogError(@"\n------检查:流量使用限制 或 请求姿势------\nError : %@ \n%@", error.userInfo, [CGXNetworkManager responseInfoDescription:task responseObject:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]]);
 
         NSString *message = @"网络连接失败";
 
