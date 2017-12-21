@@ -123,6 +123,7 @@ typedef void(^CGXNetworkManagerMultiFilesDownloadCompletionBlock)(NSArray<NSURL 
  @param uploadProgressBlock 上传进度
  @param timeoutInterval     超时时间
  @param method              请求姿势
+ @return 返回 NSURLSessionTask 实例，可用于暂停继续，暂停 调用suspend方法，继续 调用resume方法
  */
 - (NSURLSessionTask *)sendRequestWithParams:(NSDictionary *)params
                          uploadObjectsArray:(NSArray *)uploadObjectsArray

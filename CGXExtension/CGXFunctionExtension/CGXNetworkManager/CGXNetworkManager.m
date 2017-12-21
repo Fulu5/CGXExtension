@@ -217,9 +217,6 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
                                        progress:progressBlock
                                         success:successBlock
                                         failure:failureBlock];
-        
-        [sessionTask resume];
-        
     } else {
         
         if (timeoutInterval >= 0) {
