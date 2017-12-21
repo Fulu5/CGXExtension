@@ -76,7 +76,10 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
+    NSDate *statusShowDate = nil;
+    
     if (loadingStatus) {
+        statusShowDate = [NSDate date];
         [CGXHUDManager showWithStatus:loadingStatus];
     }
     
@@ -117,7 +120,11 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
 
         if (result.code == CGXExtensionErrorCodeSuccess) {
             if (loadingStatus) {
-                [CGXHUDManager dismiss];
+                if ([[NSDate date] timeIntervalSinceDate:statusShowDate] < 0.5) {
+                    [CGXHUDManager dismissWithDelay:0.5];
+                } else {
+                    [CGXHUDManager dismiss];
+                }
             }
 
             DDLogInfo(@"\nSuccess : %@ \n%@", result.message, [CGXNetworkManager responseInfoDescription:task responseObject:responseObject]);
