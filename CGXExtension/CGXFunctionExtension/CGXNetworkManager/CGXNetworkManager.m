@@ -118,10 +118,12 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
 
         result.allHeaderFields = ((NSHTTPURLResponse *)task.response).allHeaderFields;
 
+        //针对数据的有无，格式，code字段等设置本地状态码，根据本地状态弹出不同文本
         if (result.code == CGXExtensionErrorCodeSuccess) {
+            
             if (loadingStatus) {
-                if ([[NSDate date] timeIntervalSinceDate:statusShowDate] < 0.5) {
-                    [CGXHUDManager dismissWithDelay:0.5];
+                if ([[NSDate date] timeIntervalSinceDate:statusShowDate] < 0.3) {
+                    [CGXHUDManager dismissWithDelay:0.3];
                 } else {
                     [CGXHUDManager dismiss];
                 }
@@ -129,6 +131,7 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
 
             DDLogInfo(@"\nSuccess : %@ \n%@", result.message, [CGXNetworkManager responseInfoDescription:task responseObject:responseObject]);
 
+            //回调前执行前校准时间
             [self handleSuccessWithURLSessionTask:task result:result];
             
         } else {
@@ -138,6 +141,7 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
 
             DDLogInfo(@"\nError : %@ \n%@", result.error.localizedDescription, [CGXNetworkManager responseInfoDescription:task responseObject:responseObject]);
 
+            //回调前执行前校准时间
             [self handleFailureWithURLSessionTask:task result:result];
         }
 
@@ -169,10 +173,11 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
     
 #pragma mark - Progress
     
-    void (^progressBlock)(NSProgress *uploadProgress) = uploadProgressBlock ?
-    ^(NSProgress *uploadProgress) {
-        uploadProgressBlock(1.0 * uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
-    } : nil;
+    void (^progressBlock)(NSProgress *uploadProgress) = ^(NSProgress *uploadProgress) {
+        if (uploadProgressBlock) {
+            uploadProgressBlock(1.0 * uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+        }
+    };
     
     NSURLSessionTask *sessionTask = nil;
     
