@@ -24,24 +24,11 @@ static NSString *kNetworkReturnOffsetKey    = @"offset";
 @property (nonatomic, readonly, copy) NSString *message;
 //返回错误
 @property (nonatomic, readonly, strong) NSError *error;
+//服务器返回的data数据
+@property (nonatomic, readonly, strong) NSDictionary *data;
 //服务器返回的 header
 @property (nonatomic, strong) NSDictionary *allHeaderFields;
-
+/** 将 responseObject 转成 model 来处理 */
 + (instancetype)resultWithDictionary:(NSDictionary *)dictionary;
-
-#pragma mark - Data || List
-
-@property (nonatomic, readonly, strong) NSDictionary *data;
-
-@property (nonatomic, readonly, assign) NSUInteger size;
-@property (nonatomic, readonly, assign) NSUInteger count;
-@property (nonatomic, readonly, assign) NSUInteger offset;
-@property (nonatomic, readonly, strong) NSArray *list;
-
-- (id)model:(Class)clazz;
-- (id)model:(Class)clazz atKeyPath:(NSString *)keyPath;
-
-- (NSArray *)arrayOfModel:(Class)clazz;
-- (NSArray *)arrayOfModel:(Class)clazz atKeyPath:(NSString *)keyPath;
 
 @end
