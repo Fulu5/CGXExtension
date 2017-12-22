@@ -10,8 +10,11 @@
 
 @interface NSDateFormatter (CGXExtension)
 
+/** yyyy-MM-dd */
 + (NSDateFormatter *)defaultDateFormatter;
+/** yyyy-MM-dd HH:mm:ss */
 + (NSDateFormatter *)defaultDatetimeFormatter;
+/** yyyy-MM-dd HH:mm */
 + (NSDateFormatter *)defaultDatetimeWithoutSecondsFormatter;
 
 + (NSDateFormatter *)dateFormatterForGMT;
