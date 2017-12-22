@@ -11,7 +11,7 @@
 
 @interface CGXTimestampManager ()
 
-//服务器时间和本地当前的时间差
+/** 服务器时间和本地当前的时间差 */
 @property (nonatomic, assign) NSTimeInterval timestampDelta;
 
 @end
@@ -24,6 +24,7 @@
 
 + (void)setServerTimestamp:(NSTimeInterval)serverTimestamp {
     if (serverTimestamp > 0) {
+        //缓存服务器时间与本地时间的差值
         [CGXTimestampManager sharedInstance].timestampDelta = serverTimestamp - [CGXTimestampManager localTimestamp];
     }
 }
