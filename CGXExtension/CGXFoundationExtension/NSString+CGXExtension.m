@@ -14,8 +14,8 @@
 
 #pragma mark - 验证比较
 
-+ (BOOL)isEmpty:(NSString *)string {
-    if (!string.length || ![[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]) {
+- (BOOL)isEmpty {
+    if (!self.length || ![[self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]) {
         return YES;
     }
     return NO;

@@ -13,7 +13,7 @@
 
 #pragma mark - 验证比较
 
-+ (BOOL)isEmpty:(NSString *)string;
+- (BOOL)isEmpty;
 
 - (BOOL)isEmail;
 - (BOOL)isPhone;
