@@ -228,44 +228,44 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
         switch (method) {
             case GET:
             {
-                [self.sessionManager GET:interfaceAddress
-                              parameters:sendParams
-                                progress:progressBlock
-                                 success:successBlock
-                                 failure:failureBlock];
+                sessionTask = [self.sessionManager GET:interfaceAddress
+                                            parameters:sendParams
+                                              progress:progressBlock
+                                               success:successBlock
+                                               failure:failureBlock];
             }
                 break;
             case POST:
             {
-                [self.sessionManager POST:interfaceAddress
-                              parameters:sendParams
-                                progress:progressBlock
-                                 success:successBlock
-                                 failure:failureBlock];
+                sessionTask = [self.sessionManager POST:interfaceAddress
+                                             parameters:sendParams
+                                               progress:progressBlock
+                                                success:successBlock
+                                                failure:failureBlock];
             }
                 break;
             case PUT:
             {
-                [self.sessionManager PUT:interfaceAddress
-                              parameters:sendParams
-                                 success:successBlock
-                                 failure:failureBlock];
+                sessionTask = [self.sessionManager PUT:interfaceAddress
+                                            parameters:sendParams
+                                               success:successBlock
+                                               failure:failureBlock];
             }
                 break;
             case DELETE:
             {
-                [self.sessionManager DELETE:interfaceAddress
-                                 parameters:sendParams
-                                    success:successBlock
-                                    failure:failureBlock];
+                sessionTask = [self.sessionManager DELETE:interfaceAddress
+                                               parameters:sendParams
+                                                  success:successBlock
+                                                  failure:failureBlock];
             }
                 break;
             case PATCH:
             {
-                [self.sessionManager PATCH:interfaceAddress
-                                parameters:sendParams
-                                   success:successBlock
-                                   failure:failureBlock];
+                sessionTask = [self.sessionManager PATCH:interfaceAddress
+                                              parameters:sendParams
+                                                 success:successBlock
+                                                 failure:failureBlock];
             }
                 break;
                 
