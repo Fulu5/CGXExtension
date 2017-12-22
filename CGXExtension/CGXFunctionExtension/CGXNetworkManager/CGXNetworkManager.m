@@ -510,12 +510,12 @@ NSTimeInterval const kCGXNetworkUploadTimeoutIntervalDefault = 600.;// or 0. ?
     }
     
     return [NSString stringWithFormat:
-            @" ------RequestURL------: \n %@ %@, \n "
-            " ------RequestBody------: \n %@, \n "
-            " ------RequestHeader------:\n %@, \n "
-            " ------ResponseStatus------:\n %@, \n "
-            " ------ResponseBody------:\n %@, \n "
-            " ------ResponseHeader-----:\n %@ \n ",
+            @"------RequestURL------:\n%@ %@,\n"
+            "------RequestBody------:\n%@,\n"
+            "------RequestHeader------:\n%@,\n"
+            "------ResponseStatus------:\n%@,\n"
+            "------ResponseBody------:\n%@,\n"
+            "------ResponseHeader-----:\n%@\n",
             request.URL, request.HTTPMethod,
             [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding],
             request.allHTTPHeaderFields,
