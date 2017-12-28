@@ -109,6 +109,8 @@ typedef void (^AlertActionBlock)(NSInteger buttonIndex, UIAlertAction *action);
 
 @interface UIViewController (CGXExtension)
 
+- (void)pushViewControllerHidesBottomBar:(UIViewController *)viewController;
+
 /**
  弹出 UIAlertController
 

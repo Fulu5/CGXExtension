@@ -166,6 +166,11 @@ typedef void (^CGXAlertActionsConfig)(CGXAlertActionBlock actionBlock);
 
 @implementation UIViewController (CGXExtension)
 
+- (void)pushViewControllerHidesBottomBar:(UIViewController *)viewController {
+    viewController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
 - (void)showAlertWithStyle:(UIAlertControllerStyle)style title:(NSString *)title message:(NSString *)message buttonsConfig:(CGXAlertButtonsConfig)buttonsConfig actionsBlock:(CGXAlertActionBlock)actionBlock {
     
     if (buttonsConfig) {
