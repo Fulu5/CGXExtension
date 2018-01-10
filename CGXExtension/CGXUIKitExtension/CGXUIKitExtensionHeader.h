@@ -25,3 +25,4 @@
 #import "UITableViewCell+CGXExtension.h"
 #import "UITextField+CGXExtension.h"
 #import "UIWebView+CGXExtension.h"
+#import "UIAlertController+CGXExtension.h"
