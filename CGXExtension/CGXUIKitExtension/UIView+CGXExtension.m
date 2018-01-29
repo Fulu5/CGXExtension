@@ -70,14 +70,24 @@
     return self.frame.size;
 }
 
-- (void)setCornerWidth:(CGFloat)width {
-    self.layer.cornerRadius = width;
+- (void)setGXCornerRadius:(CGFloat)radius {
+    self.layer.cornerRadius = radius;
     self.clipsToBounds = NO;
 }
 
 - (void)setBorderColor:(UIColor *)color width:(CGFloat)width {
     self.layer.borderColor = color.CGColor;
     self.layer.borderWidth = width;
+}
+
+- (UIViewController *)currentViewController {
+    for (UIView *next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
 }
 
 @end

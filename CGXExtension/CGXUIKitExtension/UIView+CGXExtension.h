@@ -19,8 +19,10 @@
 @property(nonatomic, assign) CGSize size;
 
 /** 设置 cornerRadius */
-- (void)setCornerWidth:(CGFloat)width;
+- (void)setGXCornerRadius:(CGFloat)radius;
 /** 设置边界颜色和宽度 */
 - (void)setBorderColor:(UIColor *)color width:(CGFloat)width;
+/** 找到视图所在的控制器 */
+- (UIViewController *)currentViewController;
 
 @end
