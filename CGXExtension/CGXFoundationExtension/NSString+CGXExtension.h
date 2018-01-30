@@ -73,6 +73,9 @@
 /** 将 JSON data 转为 Foundation object*/
 - (id)objectFromJSONString;
 
+/** 将日期字符串转为刚刚/几分钟/几小时/几天前 */
++ (NSString *)tweetPostTimeDescriptionFor:(NSString *)str;
+
 /** 获取固定长度随机字符串 */
 + (NSString *)randomStringWithLength:(int)length;
 
