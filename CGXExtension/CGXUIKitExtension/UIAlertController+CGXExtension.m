@@ -10,16 +10,45 @@
 
 @implementation UIAlertController (CGXExtension)
 
-+ (void)showAlertWithTitle: (NSString *)title message: (NSString *)message actionTitles: (NSArray<NSString *> *)actions cancelTitle: (NSString *)cancelTitle style: (UIAlertControllerStyle)style completion: (void(^)(NSInteger index))completion {
++ (void)showAlertWithTitle:(NSString *)title
+                   message:(NSString *)message
+              actionTitles:(NSArray<NSString *> *)actions
+               cancelTitle:(NSString *)cancelTitle
+                completion:(void(^)(NSInteger index))completion {
+    [self showAlertWithTitle:title
+                     message:message
+                 cancelTitle:cancelTitle
+                 cancelStyle:UIAlertActionStyleDefault
+                 otherTitles:actions
+                       style:UIAlertControllerStyleAlert
+                otherHandler:completion
+               cancelHandler:nil];
+}
+
++ (void)showAlertWithTitle:(NSString *)title
+                   message:(NSString *)message
+               cancelTitle:(NSString *)cancelTitle
+               cancelStyle:(UIAlertActionStyle)cancelStyle
+               otherTitles:(NSArray<NSString *> *)otherTitles
+                     style:(UIAlertControllerStyle)style
+              otherHandler:(void (^)(NSInteger))otherHandler
+             cancelHandler:(dispatch_block_t)cancelHandler {
+    
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:style];
-    for (NSInteger index = 0; index < actions.count; index++) {
-        UIAlertAction *action = [UIAlertAction actionWithTitle:actions[index] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            !completion ?  : completion(index);
+    for (NSInteger i = 0; i < otherTitles.count; i++) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:otherTitles[i]
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+            !otherHandler ?: otherHandler(i);
         }];
         [alert addAction:action];
     }
     if (cancelTitle.length) {
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:cancelTitle
+                                                         style:cancelStyle
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                           !cancelHandler ?: cancelHandler();
+                                                       }];
         [alert addAction:cancel];
     }
     UIViewController *vc = [[UIApplication sharedApplication] keyWindow].rootViewController;
