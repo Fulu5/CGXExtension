@@ -32,8 +32,9 @@
 #define kGCDBackground(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 #define kGCDMain(block)       dispatch_async(dispatch_get_main_queue(),block)
 
-//SharedInstance
+//SharedInstance.h
 #define SharedInstanceDeclare + (instancetype)sharedInstance;
+//SharedInstance.m
 #define SharedInstanceImplementation \
 + (instancetype)sharedInstance { \
 static id sharedInstance = nil; \
