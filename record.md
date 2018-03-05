@@ -113,8 +113,8 @@ BOOL取值FALSE和TRUE，是0和非0的区别
 		* Prefix Header
 24. 添加通知需要手动移除，一般在控制器的dealloc方法中移除，此种移除方式下，在其他页面需要发送通知时要在pop操作之后再发送通知
 25. `iPhone X` 适配时，`tableView` 底部以 `superView` 为约束
-26. he
-27. he
+26. `Control + Command + e` 可以批量修改光标所在位置的变量
+27. ![](/Users/caocao/Desktop/CGX/库.png)
 28. he
 29. he
 30. he
